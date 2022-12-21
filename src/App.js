@@ -21,7 +21,7 @@ function App() {
     // console.log(event.target.name);
   };
 
-  // const handleInputChanege = event => (ip1, ip2) => {};
+  // const handleInputChange = (ip1, ip2) => event => {};
 
   // function handleInputChange( inp1, inp2) {
   //   return function (event) {}
@@ -38,7 +38,7 @@ function App() {
           console.log('clicked');
           // alert('User Clicked Increase Button');
         }}
-        onMouseOver={function () {
+        onMouseOver={() => {
           alert('Mouse Over');
         }}
       >
@@ -51,7 +51,6 @@ function App() {
         <input
           onChange={event => handleInputChange(event, 'a', 'b')}
           // onChange={handleInputChange}
-          // value="123456"
           name="password"
           placeholder="Enter something"
           // onChange={function (event) {
@@ -65,5 +64,8 @@ function App() {
     </div>
   );
 }
+
+// const btn = document.querySelector('button');
+// btn.addEventListener('click', function () {});
 
 export default App;
