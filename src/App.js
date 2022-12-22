@@ -1,25 +1,23 @@
 import logo from './logo.svg';
 import './App.css';
 
+// 1. Name Import
+import {
+  formatTwoDigit,
+  formatTwoDigit1,
+  formatTwoDigit2,
+} from './formatNumber';
+
+import * as formatNumberService from './formatNumber';
+
+// 2. Default Import
+import a from './formatNumber';
+
+console.log(formatTwoDigit);
+console.log(formatNumberService.formatTwoDigit);
+
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  return <div className="App"></div>;
 }
 
 export default App;
