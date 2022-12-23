@@ -1,23 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import { v4 as uuidv4 } from 'uuid';
+import { useState } from 'react';
+import TodoForm from './components/TodoForm';
+import TodoItem from './components/TodoItem';
+
+const initialTodos = [
+  { id: uuidv4(), title: 'Play game', completed: false },
+  { id: uuidv4(), title: 'Shopping', completed: true },
+  { id: uuidv4(), title: 'Meet the doctor', completed: false },
+];
 
 function App() {
+  const [todos, setTodos] = useState(initialTodos);
+
+  const createTodo = title => {
+    const newTodo = { id: uuidv4(), title: title, completed: false };
+    setTodos([newTodo, ...todos]);
+  };
+
+  const deleteTodo = id => {
+    console.log('Click Delete', id);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container py-5" style={{ maxWidth: 576 }}>
+      <TodoForm createTodo={createTodo} />
+      <br />
+      <ul className="list-group">
+        {todos.map(el => (
+          <TodoItem key={el.id} todo={el} deleteTodo={deleteTodo} />
+        ))}
+      </ul>
     </div>
   );
 }
