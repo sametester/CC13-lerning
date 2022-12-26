@@ -2,6 +2,8 @@ import { v4 as uuidv4 } from 'uuid';
 import { useState } from 'react';
 import TodoForm from './components/TodoForm';
 import TodoItem from './components/TodoItem';
+import SearchForm from './components/SearchForm';
+import SearchStatus from './components/SearchStatus';
 
 const initialTodos = [
   { id: uuidv4(), title: 'Play game', completed: false },
@@ -36,6 +38,10 @@ function App() {
   return (
     <div className="container py-5" style={{ maxWidth: 576 }}>
       <TodoForm createTodo={createTodo} />
+      <br />
+      <SearchForm />
+      <br />
+      <SearchStatus />
       <br />
       <ul className="list-group">
         {todos.map(el => (
