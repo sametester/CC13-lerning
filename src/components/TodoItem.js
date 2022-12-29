@@ -1,18 +1,20 @@
 import { useState } from 'react';
 import TodoForm from './TodoForm';
 import TodoContent from './TodoContent';
+import { useTodo } from '../contexts/TodoContext';
 
 export default function TodoItem(props) {
   const [isEdit, setIsEdit] = useState(false);
+  const ctx = useTodo();
 
   const openEdit = () => setIsEdit(true);
   const closeEdit = () => setIsEdit(false);
 
-  const onSuccessEdit = async title => {
-    await props.updateTodo(
-      { title, completed: props.todo.completed },
-      props.todo.id
-    );
+  const handleUpdateTodoForm = title => {
+    ctx.updateTodo(props.todo.id, {
+      title: title,
+      completed: props.todo.completed,
+    });
     closeEdit();
   };
 
@@ -23,7 +25,11 @@ export default function TodoItem(props) {
       }`}
     >
       {isEdit ? (
-        <TodoForm onSuccess={onSuccessEdit} title={props.todo.title} />
+        <TodoForm
+          title={props.todo.title}
+          onCancel={closeEdit}
+          onConfirm={handleUpdateTodoForm}
+        />
       ) : (
         <TodoContent todo={props.todo} openEdit={openEdit} />
       )}
